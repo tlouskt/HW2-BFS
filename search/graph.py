@@ -1,4 +1,5 @@
 import networkx as nx
+from queue import Queue
 
 class Graph:
     """
@@ -21,7 +22,63 @@ class Graph:
         * If there is an end node input and a path does not exist, return None
 
         """
-        return
+        #check if start and end nodes exist
+
+        if start not in self.graph:
+            return None
+        
+        if end and end not in self.graph:
+            return None
+
+        if len(self.graph) == 0:
+            return None
+
+        #initialize queue and add start to visited and queue
+
+        q= Queue(maxsize=0)
+        visited =[]
+        q.put(start)
+        visited.append(start)
+        path=[]
+
+        #while queue is not empty
+        while not q.empty():
+            curr_node = q.get()
+            path.append(curr_node)
+
+            #check if end is reached
+            if curr_node == end:
+                return path
+            
+            #loop through neighbors of curent node and check if it's been visited, if not, put in visited and queue
+            neighbors = self.graph.neighbors(curr_node)
+            for n in neighbors:
+                if n not in visited:
+                    visited.append(n)
+                    q.put(n)
+        
+        #if end not reached, return None. if end not provided, return entire traversal
+        if end:
+            return None
+        else:
+            return path
+
+
+
+
+
+
+
+        
+
+
+
+        
+
+        
+
+
+
 
 
 
