@@ -13,7 +13,7 @@ authors = [{name = "Tracy Lou", email = "tracy.lou@ucsf.edu"}]
 license = {file = "LICENSE"}
 classifiers = ["License :: OSI Approved :: MIT License"]
 dynamic = ["version", "description"]
-dependencies = ["pytest", #"#networkx"]
+dependencies = ["pytest", "networkx"]
 
 
 [project.urls]
