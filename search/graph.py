@@ -33,29 +33,36 @@ class Graph:
         if len(self.graph) == 0:
             return None
 
-        #initialize queue and add start to visited and queue
+        #initialize queue, path, and visited dictionary to store parent nodes
 
-        q= Queue(maxsize=0)
-        visited =[]
-        q.put(start)
-        visited.append(start)
+        visited = {}
+        q = Queue()
         path=[]
+
+        q.put(start)
+        visited[start] = None
 
         #while queue is not empty
         while not q.empty():
             curr_node = q.get()
             path.append(curr_node)
 
-            #check if end is reached
+            #check if current node is end node
             if curr_node == end:
-                return path
+                path = [curr_node]
+
+                while curr_node != start:
+                    curr_node = visited[curr_node]
+                    path.append(curr_node)
+                return path[::-1]
+                            
             
             #loop through neighbors of curent node and check if it's been visited, if not, put in visited and queue
             neighbors = self.graph.neighbors(curr_node)
             for n in neighbors:
                 if n not in visited:
-                    visited.append(n)
                     q.put(n)
+                    visited[n] = curr_node
         
         #if end not reached, return None. if end not provided, return entire traversal
         if end:
