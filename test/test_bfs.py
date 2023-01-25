@@ -38,4 +38,29 @@ def test_bfs():
     
     g = graph.Graph("./data/citation_network.adjlist")
 
-    
+    shortestpath = g.bfs('Lani Wu', 'Atul Butte')
+
+    assert shortestpath == ['Lani Wu', '30727954', 'Michael McManus', '32025019', 'Atul Butte']
+
+    #check path length
+    assert len(shortestpath) == 5
+
+    #edge case 1: run bfs from a start node that does not exist in graph
+
+    missing_start = g.bfs('Jennifer Coolidge')
+    assert missing_start == None
+
+    #edge case 2: run bfs search for an end node that doesn't exist in graph
+
+    missing_end = g.bfs('Lani Wu', 'Banksy')
+    assert missing_end == None
+
+    #edge case 3: run bfs on nodes that are not connected and raise exception
+
+    with pytest.raises(Exception):
+        nopath = g.bfs('Lani Wu', 'Neil Rish')
+    assert "These nodes are not connected"
+
+
+
+

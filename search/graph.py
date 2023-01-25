@@ -22,7 +22,7 @@ class Graph:
         * If there is an end node input and a path does not exist, return None
 
         """
-        #check if start and end nodes exist
+        #check if start and end nodes exist, return None if not. check if graph is empty
 
         if start not in self.graph:
             return None
@@ -42,7 +42,7 @@ class Graph:
         q.put(start)
         visited[start] = None
 
-        #while queue is not empty
+        #loop until queue is empty. initilize starting node and add to queue and path
         while not q.empty():
             curr_node = q.get()
             path.append(curr_node)
@@ -51,13 +51,15 @@ class Graph:
             if curr_node == end:
                 path = [curr_node]
 
+                #otherwise, add current node into visited dictionary and path, return path in reverse
                 while curr_node != start:
                     curr_node = visited[curr_node]
                     path.append(curr_node)
                 return path[::-1]
                             
             
-            #loop through neighbors of curent node and check if it's been visited, if not, put in visited and queue
+            #loop through neighbors of curent node and check if it's in visited dict
+            # if not, put in visited and queue
             neighbors = self.graph.neighbors(curr_node)
             for n in neighbors:
                 if n not in visited:

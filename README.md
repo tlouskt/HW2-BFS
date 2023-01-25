@@ -1,3 +1,5 @@
+![BuildStatus](https://github.com/tlouskt/HW2-BFS/actions/workflows/ci.yml/badge.svg?event=push)
+
 # Assignment 2
 Breadth-first search
 
