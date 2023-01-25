@@ -6,7 +6,7 @@ requires = [
 build-backend = "flit_core.buildapi"
 
 [project]
-name = "seqparser"
+name = "search"
 authors = [{name = "Tracy Lou", email = "tracy.lou@ucsf.edu"}]
 readme = "README.md"
 license = {file = "LICENSE"}
