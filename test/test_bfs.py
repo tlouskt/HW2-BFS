@@ -58,8 +58,7 @@ def test_bfs():
     #edge case 3: run bfs on nodes that are not connected and raise exception
 
     with pytest.raises(Exception):
-        nopath = g.bfs('Lani Wu', 'Neil Rish')
-    assert "These nodes are not connected"
+        assert g.bfs('Lani Wu', 'Neil Rish'), "These nodes are not connected"
 
 
 
